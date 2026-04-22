@@ -31,13 +31,13 @@ final class BoxButton: UIButton {
     // MARK: - setup
     
     private func setup(title: String, isEnabled: Bool) {
-        self.isEnabled = true
+        self.isEnabled = isEnabled
         titleLabel?.font = .medium
         layer.cornerRadius = 10
         setTitle(title, for: .normal)
     }
     
-    // MARK: - Func
+    // MARK: - Function
     
     private func updateButtonState() {
         backgroundColor = isEnabled ? .pink : .grey400

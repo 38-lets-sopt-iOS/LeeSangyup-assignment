@@ -29,15 +29,15 @@ class BaseUIViewController: UIViewController {
     
     // MARK: - Custom Method
     
-    private func setUI() {}
+    func setUI() {}
     
-    private func setLayout() {}
+    func setLayout() {}
     
     // MARK: - Action Method
     
-    private func addTarget() {}
+    func addTarget() {}
     
     // MARK: - Delegate Method
     
-    private func setDelegate() {}
+    func setDelegate() {}
 }
