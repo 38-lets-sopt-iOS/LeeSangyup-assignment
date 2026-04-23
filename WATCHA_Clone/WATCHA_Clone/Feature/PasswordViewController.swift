@@ -75,6 +75,16 @@ final class PasswordViewController: BaseUIViewController {
     
     // MARK: - Custom Methods
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bindData()
+    }
+    
+    override func setDelegate() {
+        passwordTextField.validationDelegate = self
+    }
+    
     override func setUI() {
         view.addSubviews(passwordHeadLabel,
                          passwordBodyLabel,
@@ -121,9 +131,28 @@ final class PasswordViewController: BaseUIViewController {
         }
     }
     
+    // MARK: - PrivateMethod
+    
+    private func bindData() {
+        self.passwordBodyLabel.text = "\(userEmail ?? "???")로 가입 중"
+    }
+    
     // MARK: - HelperMethod
     
     public func dataBind(email: String?) {
         self.userEmail = email
+    }
+}
+
+// MARK: - Functions
+
+extension PasswordViewController: TextFieldValidatingDelegate {
+    func textFieldValidityDidChange() {
+        let field = passwordTextField
+        signinButton.isEnabled = field.isValidated
+        checkImage.image = field.isValidated
+        ? UIImage(resource: .enableOn)
+        : UIImage(resource: .enableOff)
+        passwordRuleLabel.textColor = field.isValidated ? .green : .grey100
     }
 }

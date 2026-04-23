@@ -67,8 +67,8 @@ final class SignInTextField: UITextField {
         $0.contentMode = .scaleAspectFit
     }
     
-    private let toggleButton = UIButton().then {
-        $0.setImage(.eyeOn, for: .normal)
+    private lazy var toggleButton = UIButton().then {
+        $0.setImage(self.isSecure ? .eyeOn : .eyeOff, for: .normal)
     }
     
     private let rightStackView = UIStackView().then {
@@ -131,6 +131,7 @@ final class SignInTextField: UITextField {
             
         case .password:
             isSecureTextEntry = isSecure
+            toggleButton.setImage(isSecure ? .eyeOff : .eyeOn, for: .normal)
             rightStackView.addArrangedSubview(clearButton)
             rightStackView.addArrangedSubview(toggleButton)
         case .nickname:
@@ -158,6 +159,7 @@ final class SignInTextField: UITextField {
     @objc private func togglePasswordVisibility() {
         isSecure.toggle()
         isSecureTextEntry = isSecure
+        toggleButton.setImage(isSecure ? .eyeOff : .eyeOn, for: .normal)
     }
     
     @objc private func editingDidBegin() {
@@ -172,7 +174,16 @@ final class SignInTextField: UITextField {
     
     @objc private func textDidChange() {
         updateRightViewVisibility()
-        validateEmail()
+        
+        switch type {
+        case .email:
+            validateEmail()
+        case .password:
+            validatePassword()
+        case .nickname:
+            break
+        }
+        
         validationDelegate?.textFieldValidityDidChange()
     }
     
@@ -184,4 +195,10 @@ final class SignInTextField: UITextField {
         let isValid = text?.isValidEmail ?? false
         isValidated = isValid
     }
+    
+    private func validatePassword() {
+        let isValid = text?.isValidPassword ?? false
+        isValidated = isValid
+    }
 }
+
