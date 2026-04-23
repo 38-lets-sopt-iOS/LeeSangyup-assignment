@@ -37,6 +37,14 @@ final class LoginViewController: BaseUIViewController {
     private let nextButton = BoxButton("다음", isEnabled: false)
     
     // MARK: - Custom Method
+   
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        emailTextField.text = nil
+        nextButton.isEnabled = false
+        emailTextField.rightViewMode = .never
+    }
     
     override func setUI() {
         view.addSubviews(loginHeadLabel,
@@ -83,6 +91,7 @@ final class LoginViewController: BaseUIViewController {
     private func nextButtonDidTap() {
         let passwordVC = PasswordViewController()
         passwordVC.dataBind(email: emailTextField.text)
+        passwordVC.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(passwordVC, animated: true)
     }
 }

@@ -137,7 +137,7 @@ final class PasswordViewController: BaseUIViewController {
         signinButton.addTarget(self, action: #selector(signinButtonDidTap), for: .touchUpInside)
     }
     
-    // MARK: - ActionMethods
+    // MARK: - Action Methods
     
     @objc
     private func setNicknameButtonDidTap() {
@@ -157,6 +157,7 @@ final class PasswordViewController: BaseUIViewController {
     private func signinButtonDidTap() {
         let welcomeVC = WelcomeViewController()
         welcomeVC.dataBind(nickname: nickname)
+        welcomeVC.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(welcomeVC, animated: true)
     }
     

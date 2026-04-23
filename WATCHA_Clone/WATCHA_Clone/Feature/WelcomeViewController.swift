@@ -65,6 +65,17 @@ final class WelcomeViewController: BaseUIViewController {
         }
     }
     
+    override func addTarget() {
+        toMainButton.addTarget(self, action: #selector(toMainButtonDidTap), for: .touchUpInside)
+    }
+    
+    // MARK: - Action Method
+    
+    @objc
+    private func toMainButtonDidTap() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+    
     // MARK: - PrivateMethod
     
     private func bindData() {
