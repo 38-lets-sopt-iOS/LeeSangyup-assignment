@@ -12,6 +12,10 @@ import Then
 
 final class WelcomeViewController: BaseUIViewController {
     
+    // MARK: - Property
+    
+    private var userNickname: String?
+    
     // MARK: - UI Components
     
     private let watchaImage = UIImageView().then {
@@ -20,7 +24,6 @@ final class WelcomeViewController: BaseUIViewController {
     }
     
     private let welcomeLabel = UILabel().then {
-        $0.text = "나연님\n가입을 환영합니다!"
         $0.textAlignment = .center
         $0.numberOfLines = 2
         $0.font = .head2
@@ -30,6 +33,12 @@ final class WelcomeViewController: BaseUIViewController {
     private let toMainButton = BoxButton("메인으로", isEnabled: true)
     
     // MARK: - Custom Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bindData()
+    }
     
     override func setUI() {
         view.addSubviews(watchaImage,
@@ -54,5 +63,17 @@ final class WelcomeViewController: BaseUIViewController {
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
+    }
+    
+    // MARK: - PrivateMethod
+    
+    private func bindData() {
+        self.welcomeLabel.text = "\(userNickname ?? "???")님\n가입을 환영합니다!"
+    }
+    
+    // MARK: - HelperMethod
+    
+    public func dataBind(nickname: String?) {
+        self.userNickname = nickname
     }
 }

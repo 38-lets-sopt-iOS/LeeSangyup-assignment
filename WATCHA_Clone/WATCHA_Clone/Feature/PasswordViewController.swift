@@ -133,13 +133,14 @@ final class PasswordViewController: BaseUIViewController {
     }
     
     override func addTarget() {
-        setNicknameButton.addTarget(self, action: #selector(makeNicknameButtonDidTap), for: .touchUpInside)
+        setNicknameButton.addTarget(self, action: #selector(setNicknameButtonDidTap), for: .touchUpInside)
+        signinButton.addTarget(self, action: #selector(signinButtonDidTap), for: .touchUpInside)
     }
     
     // MARK: - ActionMethods
     
     @objc
-    private func makeNicknameButtonDidTap() {
+    private func setNicknameButtonDidTap() {
         let nicknameVC = SetNicknameViewController()
         nicknameVC.modalPresentationStyle = .pageSheet
         if let sheet = nicknameVC.sheetPresentationController {
@@ -150,6 +151,13 @@ final class PasswordViewController: BaseUIViewController {
             self?.bindNickname(nickname: nickname)
         }
         present(nicknameVC, animated: true, completion: nil)
+    }
+    
+    @objc
+    private func signinButtonDidTap() {
+        let welcomeVC = WelcomeViewController()
+        welcomeVC.dataBind(nickname: nickname)
+        navigationController?.pushViewController(welcomeVC, animated: true)
     }
     
     // MARK: - PrivateMethod
@@ -169,6 +177,13 @@ final class PasswordViewController: BaseUIViewController {
             .baselineOffset: 2
         ])
         setNicknameButton.setAttributedTitle(attributedTitle, for: .normal)
+        updateSigninButtonState()
+    }
+    
+    private func updateSigninButtonState() {
+        let isPasswordValid = passwordTextField.isValidated
+        let hasNickname = nickname != nil
+        signinButton.isEnabled = isPasswordValid && hasNickname
     }
     
     // MARK: - HelperMethod
@@ -183,10 +198,10 @@ final class PasswordViewController: BaseUIViewController {
 extension PasswordViewController: TextFieldValidatingDelegate {
     func textFieldValidityDidChange() {
         let field = passwordTextField
-        signinButton.isEnabled = field.isValidated
         checkImage.image = field.isValidated
         ? UIImage(resource: .enableOn)
         : UIImage(resource: .enableOff)
         passwordRuleLabel.textColor = field.isValidated ? .green : .grey100
+        updateSigninButtonState()
     }
 }
