@@ -15,6 +15,7 @@ final class PasswordViewController: BaseUIViewController {
     // MARK: - Property
     
     private var userEmail: String?
+    private var nickname: String?
     
     // MARK: - UI Components
     
@@ -131,10 +132,43 @@ final class PasswordViewController: BaseUIViewController {
         }
     }
     
+    override func addTarget() {
+        setNicknameButton.addTarget(self, action: #selector(makeNicknameButtonDidTap), for: .touchUpInside)
+    }
+    
+    // MARK: - ActionMethods
+    
+    @objc
+    private func makeNicknameButtonDidTap() {
+        let nicknameVC = SetNicknameViewController()
+        nicknameVC.modalPresentationStyle = .pageSheet
+        if let sheet = nicknameVC.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        nicknameVC.onNicknameSelected = { [weak self] nickname in
+            self?.bindNickname(nickname: nickname)
+        }
+        present(nicknameVC, animated: true, completion: nil)
+    }
+    
     // MARK: - PrivateMethod
     
     private func bindData() {
         self.passwordBodyLabel.text = "\(userEmail ?? "???")로 가입 중"
+    }
+    
+    private func bindNickname(nickname: String?) {
+        self.nickname = nickname
+        let title = nickname ?? "???"
+        let attributedTitle = NSAttributedString(string: title, attributes: [
+            .font: UIFont.body2,
+            .foregroundColor: UIColor.grey100,
+            .underlineStyle: NSUnderlineStyle.single.rawValue,
+            .underlineColor: UIColor.grey100,
+            .baselineOffset: 2
+        ])
+        setNicknameButton.setAttributedTitle(attributedTitle, for: .normal)
     }
     
     // MARK: - HelperMethod

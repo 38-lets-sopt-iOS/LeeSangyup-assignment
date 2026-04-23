@@ -43,8 +43,8 @@ final class SignInTextField: UITextField {
     public var isValidated: Bool = false {
         didSet {
             validateCheckImage.image = isValidated
-                ? UIImage(resource: .checkOn)
-                : UIImage(resource: .checkOff)
+            ? UIImage(resource: .checkOn)
+            : UIImage(resource: .checkOff)
         }
     }
     
@@ -136,6 +136,8 @@ final class SignInTextField: UITextField {
             rightStackView.addArrangedSubview(toggleButton)
         case .nickname:
             isSecureTextEntry = false
+            rightView = nil
+            rightViewMode = .never
         }
         
         updateRightViewVisibility()
@@ -178,17 +180,22 @@ final class SignInTextField: UITextField {
         switch type {
         case .email:
             validateEmail()
+            validationDelegate?.textFieldValidityDidChange()
         case .password:
             validatePassword()
+            validationDelegate?.textFieldValidityDidChange()
         case .nickname:
             break
         }
-        
-        validationDelegate?.textFieldValidityDidChange()
     }
     
     private func updateRightViewVisibility() {
-        rightViewMode = (text?.isEmpty == false) ? .always : .never
+        switch type {
+        case .email, .password:
+            rightViewMode = (text?.isEmpty == false) ? .always : .never
+        case .nickname:
+            rightViewMode = .never
+        }
     }
     
     private func validateEmail() {

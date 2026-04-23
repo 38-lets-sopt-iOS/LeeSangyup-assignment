@@ -12,19 +12,33 @@ import Then
 
 final class SetNicknameViewController: BaseUIViewController {
     
+    // MARK: - Property
+    
+    var onNicknameSelected: ((String) -> Void)?
+    
     // MARK: - UI Components
     
     private let welcomeLabel = UILabel().then {
         $0.text = "닉네임을 입력해주세요"
+        $0.textColor = .white
+        $0.font = .subhead1
     }
     
     private let nicknameTextField = SignInTextField().then {
         $0.placeholder = "닉네임 입력"
+        $0.type = .nickname
     }
     
-    private let completeButton = BoxButton("완료", isEnabled: false)
+    private let completeButton = BoxButton("완료", isEnabled: true).then {
+        $0.backgroundColor = .grey600
+    }
     
     // MARK: - Custom Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .grey400
+    }
     
     override func setUI() {
         view.addSubviews(welcomeLabel,
@@ -47,9 +61,20 @@ final class SetNicknameViewController: BaseUIViewController {
         
         completeButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(47)
-            $0.horizontalEdges.equalToSuperview().inset(22)
+            $0.horizontalEdges.equalToSuperview().inset(13)
             $0.height.equalTo(56)
         }
-        
+    }
+    
+    override func addTarget() {
+        completeButton.addTarget(self, action: #selector(completeButtonDidTap), for: .touchUpInside)
+    }
+    
+    // MARK: - Action Method
+    
+    @objc private func completeButtonDidTap() {
+        guard let nickname = nicknameTextField.text, !nickname.isEmpty else { return }
+        onNicknameSelected?(nickname)
+        dismiss(animated: true)
     }
 }
