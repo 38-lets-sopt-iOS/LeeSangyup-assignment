@@ -14,7 +14,7 @@ final class PasswordViewController: BaseUIViewController {
     
     // MARK: - Property
     
-    let userEmail = "aaa@gmail.com"
+    private var userEmail: String?
     
     // MARK: - UI Components
     
@@ -58,7 +58,7 @@ final class PasswordViewController: BaseUIViewController {
     
     private let setNicknameButton = UIButton().then {
         $0.backgroundColor = .clear
-
+        
         let title = "닉네임 설정"
         let attributedTitle = NSAttributedString(string: title, attributes: [
             .font: UIFont.body2,
@@ -119,5 +119,11 @@ final class PasswordViewController: BaseUIViewController {
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
+    }
+    
+    // MARK: - HelperMethod
+    
+    public func dataBind(email: String?) {
+        self.userEmail = email
     }
 }

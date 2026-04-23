@@ -72,6 +72,19 @@ final class LoginViewController: BaseUIViewController {
             $0.height.equalTo(56)
         }
     }
+    
+    override func addTarget() {
+        nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
+    }
+    
+    // MARK: - Action Methods
+    
+    @objc
+    private func nextButtonDidTap() {
+        let passwordVC = PasswordViewController()
+        passwordVC.dataBind(email: emailTextField.text)
+        navigationController?.pushViewController(passwordVC, animated: true)
+    }
 }
 
 // MARK: - Functions
