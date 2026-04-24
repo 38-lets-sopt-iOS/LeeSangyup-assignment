@@ -32,13 +32,15 @@ final class WelcomeViewController: BaseUIViewController {
     
     private let toMainButton = BoxButton("메인으로", isEnabled: true)
     
-    // MARK: - Custom Methods
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bindData()
     }
+    
+    // MARK: - Custom Methods
     
     override func setUI() {
         view.addSubviews(watchaImage,

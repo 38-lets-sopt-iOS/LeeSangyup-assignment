@@ -33,13 +33,17 @@ final class SetNicknameViewController: BaseUIViewController {
         $0.backgroundColor = .grey600
     }
     
-    // MARK: - Custom Methods
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .grey400
     }
     
+    // MARK: - Custom Methods
+
     override func setUI() {
         view.addSubviews(welcomeLabel,
                          nicknameTextField,
@@ -72,7 +76,8 @@ final class SetNicknameViewController: BaseUIViewController {
     
     // MARK: - Action Method
     
-    @objc private func completeButtonDidTap() {
+    @objc
+    private func completeButtonDidTap() {
         guard let nickname = nicknameTextField.text, !nickname.isEmpty else { return }
         onNicknameSelected?(nickname)
         dismiss(animated: true)

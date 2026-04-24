@@ -74,7 +74,7 @@ final class PasswordViewController: BaseUIViewController {
     
     private let signinButton = BoxButton("가입하기", isEnabled: false)
     
-    // MARK: - Custom Methods
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +82,8 @@ final class PasswordViewController: BaseUIViewController {
         bindData()
     }
     
+    // MARK: - Custom Methods
+
     override func setDelegate() {
         passwordTextField.validationDelegate = self
     }
