@@ -61,7 +61,7 @@ final class WelcomeViewController: BaseUIViewController {
         }
         
         toMainButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(47)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(13)
             $0.horizontalEdges.equalToSuperview().inset(22)
             $0.height.equalTo(56)
         }
