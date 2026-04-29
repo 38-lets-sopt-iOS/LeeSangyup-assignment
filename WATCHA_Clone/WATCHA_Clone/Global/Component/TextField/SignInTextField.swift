@@ -52,8 +52,6 @@ final class SignInTextField: UITextField {
     
     // MARK: - Private Properties
     
-    private let focusedBorderColor = UIColor.grey200.cgColor
-    private let defaultBorderColor = UIColor.clear.cgColor
     private var isSecure: Bool = true
     
     // MARK: - UI Components
@@ -67,9 +65,7 @@ final class SignInTextField: UITextField {
         $0.contentMode = .scaleAspectFit
     }
     
-    private lazy var toggleButton = UIButton().then {
-        $0.setImage(self.isSecure ? .eyeOn : .eyeOff, for: .normal)
-    }
+    private lazy var toggleButton = UIButton()
     
     private let rightStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -134,6 +130,7 @@ final class SignInTextField: UITextField {
             toggleButton.setImage(isSecure ? .eyeOff : .eyeOn, for: .normal)
             rightStackView.addArrangedSubview(clearButton)
             rightStackView.addArrangedSubview(toggleButton)
+            
         case .nickname:
             isSecureTextEntry = false
             rightView = nil
@@ -165,12 +162,12 @@ final class SignInTextField: UITextField {
     }
     
     @objc private func editingDidBegin() {
-        layer.borderColor = focusedBorderColor
+        layer.borderColor = UIColor.grey200.cgColor
         updateRightViewVisibility()
     }
     
     @objc private func editingDidEnd() {
-        layer.borderColor = defaultBorderColor
+        layer.borderColor = UIColor.clear.cgColor
         updateRightViewVisibility()
     }
     

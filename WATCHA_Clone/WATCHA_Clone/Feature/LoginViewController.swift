@@ -89,10 +89,10 @@ final class LoginViewController: BaseUIViewController {
     
     @objc
     private func nextButtonDidTap() {
-        let passwordVC = PasswordViewController()
-        passwordVC.dataBind(email: emailTextField.text)
-        passwordVC.navigationItem.hidesBackButton = true
-        navigationController?.pushViewController(passwordVC, animated: true)
+        let passwordViewController = PasswordViewController()
+        passwordViewController.dataBind(email: emailTextField.text)
+        passwordViewController.navigationItem.hidesBackButton = true
+        navigationController?.pushViewController(passwordViewController, animated: true)
     }
 }
 

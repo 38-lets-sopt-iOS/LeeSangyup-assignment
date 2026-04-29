@@ -143,24 +143,24 @@ final class PasswordViewController: BaseUIViewController {
     
     @objc
     private func setNicknameButtonDidTap() {
-        let nicknameVC = SetNicknameViewController()
-        nicknameVC.modalPresentationStyle = .pageSheet
-        if let sheet = nicknameVC.sheetPresentationController {
+        let nicknameViewController = SetNicknameViewController()
+        nicknameViewController.modalPresentationStyle = .pageSheet
+        if let sheet = nicknameViewController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
         }
-        nicknameVC.onNicknameSelected = { [weak self] nickname in
+        nicknameViewController.onNicknameSelected = { [weak self] nickname in
             self?.bindNickname(nickname: nickname)
         }
-        present(nicknameVC, animated: true, completion: nil)
+        present(nicknameViewController, animated: true, completion: nil)
     }
     
     @objc
     private func signinButtonDidTap() {
-        let welcomeVC = WelcomeViewController()
-        welcomeVC.dataBind(nickname: nickname)
-        welcomeVC.navigationItem.hidesBackButton = true
-        navigationController?.pushViewController(welcomeVC, animated: true)
+        let welcomeViewController = WelcomeViewController()
+        welcomeViewController.dataBind(nickname: nickname)
+        welcomeViewController.navigationItem.hidesBackButton = true
+        navigationController?.pushViewController(welcomeViewController, animated: true)
     }
     
     // MARK: - PrivateMethod
