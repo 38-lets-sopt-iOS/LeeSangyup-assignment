@@ -11,11 +11,12 @@ import SnapKit
 import Then
 
 final class MainCollectionViewCell: UICollectionViewCell {
+    
     static let identifier = "MainCollectionViewCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .clear
+        
         setUI()
         setLayout()
     }
@@ -24,13 +25,19 @@ final class MainCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UI Component
+    
     private let itemImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 10
     }
     
+    // MARK: - Custom Methods
+    
     private func setUI() {
+        self.backgroundColor = .clear
+
         addSubview(itemImageView)
     }
     
@@ -41,6 +48,8 @@ final class MainCollectionViewCell: UICollectionViewCell {
         }
     }
 }
+
+// MARK: - Function
 
 extension MainCollectionViewCell {
     func dataBind(_ itemData: ContentsItemModel) {
