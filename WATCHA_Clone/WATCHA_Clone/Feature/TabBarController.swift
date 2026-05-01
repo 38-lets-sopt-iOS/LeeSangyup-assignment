@@ -15,12 +15,12 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-
+        
         setTabbar()
         setAttribute()
     }
     
-   private func setTabbar() {
+    private func setTabbar() {
         let appearanceTabbar = UITabBarAppearance()
         appearanceTabbar.configureWithOpaqueBackground()
         appearanceTabbar.backgroundColor = UIColor.black
@@ -43,10 +43,9 @@ final class TabBarController: UITabBarController {
     }
     
     private func createTabBarController(for rootViewController: UIViewController, title: String?, image: UIImage, selectedImage: UIImage) -> UIViewController {
-        let navController = UINavigationController(rootViewController:  rootViewController)
-        navController.tabBarItem.title = title
-        navController.tabBarItem.image = image.withTintColor(.grey500, renderingMode: .alwaysOriginal)
-        navController.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
-        return navController
+        rootViewController.tabBarItem.title = title
+        rootViewController.tabBarItem.image = image.withTintColor(.grey500, renderingMode: .alwaysOriginal)
+        rootViewController.tabBarItem.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
+        return rootViewController
     }
 }
