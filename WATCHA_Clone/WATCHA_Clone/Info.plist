@@ -9,6 +9,8 @@
 		<string>Pretendard-Regular.ttf</string>
 		<string>Pretendard-Light.ttf</string>
 	</array>
+    <key>UIDesignRequiresCompatibility</key>
+    <true/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
