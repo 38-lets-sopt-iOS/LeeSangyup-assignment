@@ -25,7 +25,7 @@ final class WatgorithmCollectionViewCell: UICollectionViewCell, Reusable {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupUI()
+        setUI()
         setupLayout()
     }
     
@@ -35,7 +35,7 @@ final class WatgorithmCollectionViewCell: UICollectionViewCell, Reusable {
     
     // MARK: - Custom Methods
     
-    private func setupUI() {
+    private func setUI() {
         contentView.addSubview(thumbnailImageView)
     }
     
