@@ -35,7 +35,7 @@ struct SubscribeCompositionalLayout {
     
     // MARK: - Set Section Layout
     
-    static var mainSection: NSCollectionLayoutSection {
+    static let mainSection: NSCollectionLayoutSection = {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(273), heightDimension: .absolute(399)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(273), heightDimension: .absolute(399)), subitems: [item])
@@ -45,9 +45,9 @@ struct SubscribeCompositionalLayout {
         section.interGroupSpacing = 15
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 34, trailing: 0)
         return section
-    }
+    } ()
     
-    static var newContentsSection: NSCollectionLayoutSection {
+    static let newContentsSection: NSCollectionLayoutSection = {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(321), heightDimension: .absolute(180)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(321), heightDimension: .absolute(180)), subitems: [item])
@@ -60,9 +60,9 @@ struct SubscribeCompositionalLayout {
         section.interGroupSpacing = 12
         section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 24, bottom: 45, trailing: 0)
         return section
-    }
+    } ()
     
-    static var watgorithmSection: NSCollectionLayoutSection {
+    static let watgorithmSection: NSCollectionLayoutSection = {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(103), heightDimension: .absolute(153)))
         
         let group = NSCollectionLayoutGroup.horizontal(
@@ -76,9 +76,9 @@ struct SubscribeCompositionalLayout {
         section.interGroupSpacing = 12
         section.contentInsets = NSDirectionalEdgeInsets(top: 7, leading: 14, bottom: 45, trailing: 14)
         return section
-    }
+    } ()
     
-    static var upcomingSection: NSCollectionLayoutSection {
+    static let upcomingSection: NSCollectionLayoutSection = {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(103), heightDimension: .absolute(153)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(103), heightDimension: .absolute(153)), subitems: [item])
@@ -91,9 +91,9 @@ struct SubscribeCompositionalLayout {
         section.interGroupSpacing = 12
         section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 14, bottom: 45, trailing: 14)
         return section
-    }
+    } ()
     
-    static var watchaPartySection: NSCollectionLayoutSection {
+    static let watchaPartySection: NSCollectionLayoutSection = {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .absolute(196), heightDimension: .absolute(185)))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(196), heightDimension: .absolute(185)), subitems: [item])
@@ -106,5 +106,5 @@ struct SubscribeCompositionalLayout {
         section.interGroupSpacing = 12
         section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 17, bottom: 0, trailing: 14)
         return section
-    }
+    } ()
 }

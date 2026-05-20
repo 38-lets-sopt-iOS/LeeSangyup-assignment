@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-class WatgorithmCollectionViewCell: UICollectionViewCell {
+final class WatgorithmCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "WatgorithmCell"
     
@@ -45,14 +45,6 @@ class WatgorithmCollectionViewCell: UICollectionViewCell {
         thumbnailImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-    }
-    
-    // MARK: - Configure
-    
-    func configure(
-        image: UIImage?
-    ) {
-        thumbnailImageView.image = image
     }
 }
 

@@ -73,7 +73,6 @@ final class SubscribeSectionHeaderView: UICollectionReusableView {
         }
         
         subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(3)
             $0.top.equalTo(watImage.snp.bottom).offset(8.5)
             $0.leading.trailing.equalToSuperview()
         }
