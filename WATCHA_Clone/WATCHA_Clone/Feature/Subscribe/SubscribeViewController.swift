@@ -46,21 +46,8 @@ final class SubscribeViewController: BaseUIViewController {
         $0.textColor = .white
     }
     
-    private let scrollView = UIScrollView()
-    
-    private lazy var titleLabel = UILabel().then {
-        $0.text = "구독"
-        $0.font = .head1
-        $0.textColor = .white
-    }
-    
-    private let divider = UIView().then {
-        $0.backgroundColor = .grey300
-    }
-    
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: SubscribeCompositionalLayout.createLayout()).then {
         $0.showsVerticalScrollIndicator = false
-        $0.isScrollEnabled = false
         $0.backgroundColor = .clear
     }
     
@@ -89,12 +76,7 @@ final class SubscribeViewController: BaseUIViewController {
         
         view.addSubviews(stickyHeaderView,
                          headerStackView,
-                         scrollView
-        )
-        
-        scrollView.addSubviews(titleLabel,
-                               divider,
-                               collectionView
+                         collectionView
         )
     }
     
@@ -110,37 +92,13 @@ final class SubscribeViewController: BaseUIViewController {
             $0.trailing.equalToSuperview().inset(30)
         }
         
-        scrollView.snp.makeConstraints {
+        collectionView.snp.makeConstraints {
             $0.top.equalTo(headerStackView.snp.bottom)
             $0.horizontalEdges.bottom.equalToSuperview()
-        }
-        
-        scrollView.contentLayoutGuide.snp.makeConstraints {
-            $0.width.equalTo(scrollView.frameLayoutGuide)
-        }
-        
-        titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalTo(scrollView.contentLayoutGuide).inset(28)
-            $0.trailing.lessThanOrEqualTo(scrollView.contentLayoutGuide).inset(28)
-        }
-        
-        divider.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(15)
-            $0.horizontalEdges.equalTo(scrollView.frameLayoutGuide)
-            $0.height.equalTo(1)
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(divider.snp.bottom).offset(28)
-            $0.horizontalEdges.equalTo(scrollView.frameLayoutGuide)
-            $0.height.equalTo(1500)
-            $0.bottom.equalTo(scrollView.contentLayoutGuide)
         }
     }
     
     override func setDelegate() {
-        scrollView.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -163,7 +121,10 @@ final class SubscribeViewController: BaseUIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SubscribeSectionHeaderView.identifier
         )
-        collectionView.register(NewCollectionViewCell.self, forCellWithReuseIdentifier: NewCollectionViewCell.identifier
+        collectionView.register(
+            SubscribeTitleHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SubscribeTitleHeaderView.identifier
         )
     }
 }
@@ -234,19 +195,26 @@ extension SubscribeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard kind == UICollectionView.elementKindSectionHeader,
-            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SubscribeSectionHeaderView.identifier, for: indexPath) as? SubscribeSectionHeaderView else {
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+        
+        guard indexPath.section != SubscribeSection.main.rawValue else {
+            return collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SubscribeTitleHeaderView.identifier, for: indexPath)
+        }
+        
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SubscribeSectionHeaderView.identifier, for: indexPath) as? SubscribeSectionHeaderView else {
             return UICollectionReusableView()
         }
         
         switch indexPath.section {
-        case 1:
+        case SubscribeSection.newContents.rawValue:
             headerView.dataBind(title: "방금 막 도착한 신상 컨텐츠", subtitle: "예능부터 드라마까지!", showsMoreButton: false, showImage: false)
-        case 2:
+        case SubscribeSection.watgorithm.rawValue:
             headerView.dataBind(title: nil, subtitle: "예능부터 드라마까지!", showsMoreButton: true, showImage: true)
-        case 3:
+        case SubscribeSection.upcoming.rawValue:
             headerView.dataBind(title: "공개 예정 콘텐츠", subtitle: "", showsMoreButton: true, showImage: false)
-        case 4:
+        case SubscribeSection.watchaParty.rawValue:
             headerView.dataBind(title: "왓차 파티", subtitle: "", showsMoreButton: true, showImage: false)
         default:
             break

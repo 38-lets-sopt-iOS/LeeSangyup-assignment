@@ -40,8 +40,11 @@ struct SubscribeCompositionalLayout {
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(273), heightDimension: .absolute(399)), subitems: [item])
         
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.boundarySupplementaryItems = [header]
         section.interGroupSpacing = 15
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 34, trailing: 0)
         return section
