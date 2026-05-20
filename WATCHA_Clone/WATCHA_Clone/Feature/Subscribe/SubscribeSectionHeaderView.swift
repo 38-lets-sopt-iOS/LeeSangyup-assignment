@@ -10,10 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class SubscribeSectionHeaderView: UICollectionReusableView {
-    
-    static let identifier = "SubscribeSectionHeaderView"
-    
+final class SubscribeSectionHeaderView: UICollectionReusableView, Reusable {
+        
     // MARK: - UI Components
     
     private let titleLabel = UILabel().then {

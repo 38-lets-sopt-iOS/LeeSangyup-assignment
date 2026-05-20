@@ -10,10 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class WatgorithmCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = "WatgorithmCell"
-    
+final class WatgorithmCollectionViewCell: UICollectionViewCell, Reusable {
+        
     // MARK: - UI Components
     
     private let thumbnailImageView = UIImageView().then {

@@ -10,10 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class WatchaPartyCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = "WatchaPartyCollectionViewCell"
-    
+final class WatchaPartyCollectionViewCell: UICollectionViewCell, Reusable {
+        
     // MARK: - UI Components
     
     private let posterImageView = UIImageView().then {

@@ -10,10 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class MainCollectionViewCell: UICollectionViewCell {
-    
-    static let identifier = "MainCollectionViewCell"
-    
+final class MainCollectionViewCell: UICollectionViewCell, Reusable {
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         

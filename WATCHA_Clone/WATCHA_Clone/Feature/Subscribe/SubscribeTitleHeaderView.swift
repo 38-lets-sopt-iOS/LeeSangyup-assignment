@@ -10,10 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
-final class SubscribeTitleHeaderView: UICollectionReusableView {
-    
-    static let identifier = "SubscribeTitleHeaderView"
-    
+final class SubscribeTitleHeaderView: UICollectionReusableView, Reusable {
+        
     private let titleLabel = UILabel().then {
         $0.text = "구독"
         $0.font = .head1
