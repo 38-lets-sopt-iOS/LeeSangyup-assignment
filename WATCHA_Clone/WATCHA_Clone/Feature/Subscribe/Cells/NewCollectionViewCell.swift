@@ -55,4 +55,8 @@ extension NewCollectionViewCell {
     func dataBind(_ itemData: NewItemModel) {
         itemImageView.image = itemData.itemImg
     }
+    
+    func dataBind(_ itemData: ContentsItemModel) {
+        itemImageView.image = itemData.itemImg
+    }
 }

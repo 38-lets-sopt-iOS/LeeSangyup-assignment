@@ -163,7 +163,7 @@ final class SubscribeViewController: BaseUIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SubscribeSectionHeaderView.identifier
         )
-        collectionView.register(MainCollectionViewCell.self, forCellWithReuseIdentifier: MainCollectionViewCell.identifier
+        collectionView.register(NewCollectionViewCell.self, forCellWithReuseIdentifier: NewCollectionViewCell.identifier
         )
     }
 }
@@ -225,7 +225,7 @@ extension SubscribeViewController: UICollectionViewDataSource {
             cell.dataBind(partyItemList[indexPath.row])
             return cell
         case .main:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.identifier, for: indexPath) as? MainCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewCollectionViewCell.identifier, for: indexPath) as? NewCollectionViewCell else {
                 return UICollectionViewCell()
             }
             cell.dataBind(upcomingItemList[indexPath.row])
