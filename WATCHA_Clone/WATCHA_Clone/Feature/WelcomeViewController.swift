@@ -75,7 +75,8 @@ final class WelcomeViewController: BaseUIViewController {
     
     @objc
     private func toMainButtonDidTap() {
-        navigationController?.popToRootViewController(animated: true)
+        let tabBarController = TabBarController()
+        navigationController?.setViewControllers([tabBarController], animated: true)
     }
     
     // MARK: - PrivateMethod
