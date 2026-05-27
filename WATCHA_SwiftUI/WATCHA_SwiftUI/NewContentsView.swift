@@ -25,7 +25,7 @@ struct NewContentsView: View {
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: row) {
-                    ForEach(1...5, id: \.self) { index in
+                    ForEach(1...2, id: \.self) { index in
                         Image("newthing\(index)")
                             .resizable()
                             .frame(width:321, height: 180)
@@ -34,6 +34,7 @@ struct NewContentsView: View {
                     }
                 }
             }
+            .scrollTargetBehavior(.paging)
             .padding(.top, 15)
         }
         .padding(.top, 34)
