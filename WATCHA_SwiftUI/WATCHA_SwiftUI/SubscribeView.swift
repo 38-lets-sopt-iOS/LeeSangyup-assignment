@@ -18,7 +18,6 @@ struct SubscribeView: View {
                         .resizable()
                         .frame(width:273, height: 403)
                         .aspectRatio(contentMode: .fit)
-                        .contentShape(.circle)
                         .clipShape(.rect(cornerRadius: 12))
                 }
             }
