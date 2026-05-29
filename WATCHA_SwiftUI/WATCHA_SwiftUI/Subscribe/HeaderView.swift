@@ -46,11 +46,7 @@ struct HeaderView: View {
                 .frame(height: 1)
                 .foregroundStyle(.secondary)
         }
-        .frame(width: 375, height: 69)
+        .frame(maxWidth: .infinity)
         .background(.black)
     }
-}
-
-#Preview{
-    HeaderView()
 }

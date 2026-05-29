@@ -9,17 +9,25 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            HeaderView()
-            
-            ScrollView {
-                SubscribeView()
-                NewContentsView()
-                WatgorithmView()
-                CommingSoonView()
-                WatchaPartyView()
+        GeometryReader { geometry in
+            ZStack(alignment: .top) {
+                ScrollView {
+                    LazyVStack(pinnedViews: [.sectionHeaders]) {
+                        Section(header: HeaderView()) {
+                            SubscribeView()
+                            NewContentsView()
+                            WatgorithmView()
+                            CommingSoonView()
+                            WatchaPartyView()
+                        }
+                    }
+                }
+                .background(.black)
+                
+                Color.black
+                    .frame(height: geometry.safeAreaInsets.top)
+                    .ignoresSafeArea(edges: .top)
             }
         }
-        .background(.black)
     }
 }
