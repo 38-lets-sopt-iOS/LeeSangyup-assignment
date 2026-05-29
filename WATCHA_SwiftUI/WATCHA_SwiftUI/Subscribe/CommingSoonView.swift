@@ -30,6 +30,7 @@ struct CommingSoonView: View {
             }
             .padding(.top, 8.5)
             .padding(.bottom, 7)
+            .padding(.horizontal, 20)
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: row) {
@@ -41,6 +42,7 @@ struct CommingSoonView: View {
                             .clipShape(.rect(cornerRadius: 12))
                     }
                 }
+                .padding(.leading, 14)
             }
         }
         .padding(.top, 45)

@@ -16,12 +16,14 @@ struct NewContentsView: View {
                 .font(.title2)
                 .fontWeight(.bold)
                 .foregroundStyle(.white)
+                .padding(.horizontal, 20)
             
             Text("예능부터 드라마까지!")
                 .font(.title3)
                 .fontWeight(.bold)
                 .foregroundStyle(.gray)
                 .padding(.top, 3)
+                .padding(.horizontal, 20)
             
             ScrollView(.horizontal) {
                 LazyHGrid(rows: row) {
@@ -33,6 +35,7 @@ struct NewContentsView: View {
                             .clipShape(.rect(cornerRadius: 10))
                     }
                 }
+                .padding(.leading, 14)
             }
             .scrollTargetBehavior(.paging)
             .padding(.top, 15)

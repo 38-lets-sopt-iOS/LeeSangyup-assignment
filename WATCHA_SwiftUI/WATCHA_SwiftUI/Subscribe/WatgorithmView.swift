@@ -13,6 +13,7 @@ struct WatgorithmView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Image("watgorithm")
+                .padding(.leading, 20)
             
             HStack(alignment: .top, spacing: 0) {
                 Text("예능부터 드라마까지!")
@@ -30,6 +31,7 @@ struct WatgorithmView: View {
                         .foregroundStyle(.gray)
                 }
             }
+            .padding(.horizontal, 20)
             .padding(.top, 8.5)
             .padding(.bottom, 7)
             
@@ -43,6 +45,7 @@ struct WatgorithmView: View {
                             .clipShape(.rect(cornerRadius: 12))
                     }
                 }
+                .padding(.leading, 14)
             }
         }
         .padding(.top, 45)

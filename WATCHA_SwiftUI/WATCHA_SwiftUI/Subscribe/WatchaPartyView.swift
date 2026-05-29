@@ -29,6 +29,7 @@ struct WatchaPartyView: View {
                         .foregroundStyle(.gray)
                 }
             }
+            .padding(.horizontal, 20)
             .padding(.bottom, 15)
             
             ScrollView(.horizontal) {
@@ -63,6 +64,7 @@ struct WatchaPartyView: View {
                             .padding(.top, 7)
                             .padding(.trailing, 5)
                         }
+                        .padding(.leading, 14)
                     }
                 }
             }
