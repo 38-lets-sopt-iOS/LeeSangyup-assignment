@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HeaderView: View {
+    @Binding var isPresentedAlert: Bool
+    
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
             HStack(alignment: .center, spacing: 0) {
@@ -28,7 +30,7 @@ struct HeaderView: View {
                     }
                     
                     Button {
-                        
+                        isPresentedAlert.toggle()
                     } label: {
                         Image(.notification)
                     }

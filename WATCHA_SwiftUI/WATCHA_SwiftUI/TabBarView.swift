@@ -28,5 +28,6 @@ struct TabBarView: View {
             UITabBar.appearance().scrollEdgeAppearance = appearance
             UITabBar.appearance().unselectedItemTintColor = .gray
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
